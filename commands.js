@@ -32,7 +32,6 @@ module.exports = {
 
 	echo: function(arr){
 		var arg  = arr.slice(1);
-		//console.log(arg);
 		if(arg[0].charAt(0)==="$"){
 			var name = arg[0].slice(1);
 			if(name==='PATH')done(outPut(process.env["PATH"]));

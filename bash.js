@@ -1,28 +1,16 @@
-//var myModule = require("./path");
-// Output a prompt
+var commands = require("./commands");
 var fs = require('fs');
 var chalk = require('chalk');
 process.stdout.write(chalk.yellow('prompt > '));
 
-// var done = function(output){
-// 	console.log(output);
-// 	process.stdout.write(chalk.yellow('\nprompt > '));
-// }
-
 // The stdin 'data' event fires after a user types in a line
-process.stdin.on('data', function (data) {
-  //console.log(process);
-
-  var myModule = require("./commands");
+process.stdin.on('data', function (data) { 
 
   var args = data.toString().trim().split(' '); 
 
-  var cmd = args[0]; // remove the newline
+  var cmd = args[0];
 
-  myModule[cmd](args);
-
-
-  //process.stdout.write('You typed: ' + cmd);
-  //process.stdout.write(chalk.yellow('\nprompt > '));
+  if(commands[cmd]) commands[cmd](args);
+  else process.stdout.write(chalk.yellow('\nprompt > '));
 
 });
